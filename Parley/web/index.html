@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#070a14">
+<title>Parley | Multi-Agent Demo</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23070a14'/%3E%3Cpath d='M6 12V6h6M20 6h6v6M26 20v6h-6M12 26H6v-6' stroke='%235fd4ff' stroke-width='2.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='16' cy='16' r='3.2' fill='%239a86ff'/%3E%3Cpath d='M9.5 22.5l3.6-3.6' stroke='%234fe3b0' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<canvas id="grid" aria-hidden="true"></canvas>
+<div id="live" class="sr-only" role="status" aria-live="polite"></div>
+
+<header class="top">
+  <a class="brand" href="/" aria-label="Parley home">
+    <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true">
+      <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5fd4ff"/><stop offset="1" stop-color="#9a86ff"/></linearGradient></defs>
+      <path d="M4.5 11V4.5H11M21 4.5h6.5V11M27.5 21v6.5H21M11 27.5H4.5V21" stroke="url(#lg)" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="16" cy="16" r="3.6" fill="url(#lg)"/>
+      <path d="M8.2 23.8l4.2-4.2" stroke="#4fe3b0" stroke-width="2.2" stroke-linecap="round"/>
+    </svg>
+    <span>Parley</span>
+  </a>
+  <span class="pill"><i class="dot"></i>Local demo · no cloud required</span>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Agent2Agent protocol · local learning lab</div>
+    <h1 id="headline"><span class="l1">One task.</span><br><span class="shiny">Three specialist agents.</span></h1>
+    <p class="sub" id="sub">A client agent discovers remote Agent Cards, delegates work over HTTP JSON-RPC, and collects the final artifact. No API key or cloud account required.</p>
+    <ul class="stats" aria-label="Demo at a glance">
+      <li><b data-count="3">0</b><span>specialist agents</span></li>
+      <li><b data-count="4">0</b><span>local services</span></li>
+      <li><b id="stat-tasks">0</b><span>tasks delegated this session</span></li>
+    </ul>
+  </section>
+
+  <section class="panel spot" aria-labelledby="task-label">
+    <label id="task-label" for="topic">Give the manager agent a task</label>
+    <textarea id="topic" maxlength="4000" placeholder="Example: Explain how small businesses can use AI responsibly. Include opportunities, risks, and practical recommendations."></textarea>
+    <div class="examples" role="group" aria-label="Example tasks">
+      <span class="muted">Try:</span>
+      <button type="button" class="chip-btn" data-text="Explain how small businesses can use AI responsibly. Include opportunities, risks, and practical recommendations.">Responsible AI</button>
+      <button type="button" class="chip-btn" data-text="Agent discovery lets a client find remote agents through Agent Cards. Tasks carry messages made of parts. Agents return artifacts when work is complete.">How A2A works</button>
+      <button type="button" class="chip-btn" data-text="Plan a three-step rollout for a new internal tool. Include risks, owners, and a review checkpoint.">Rollout plan</button>
+    </div>
+    <div class="actions">
+      <span class="run-wrap"><button id="run" type="button"><span id="runLabel">Run multi-agent workflow</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></span>
+      <span class="hint">The three agents process your input in sequence. <kbd>Ctrl</kbd>+<kbd>Enter</kbd> also runs it.</span>
+      <span class="count muted" id="count" aria-hidden="true">0 chars</span>
+    </div>
+    <p id="error" class="error hidden" role="alert"></p>
+  </section>
+
+  <section class="panel network" aria-labelledby="net-title">
+    <div class="topline"><strong id="net-title">Agent network</strong><span class="muted">Discovery via Agent Cards · requests go down, artifacts come back up</span></div>
+    <div class="net" id="net">
+      <article class="node spot hub" id="node-coordinator" data-state="idle">
+        <div class="node-top"><span class="idx">00</span><span class="mark" aria-hidden="true"><svg viewBox="0 0 28 28"><circle class="ring" cx="14" cy="14" r="11"/><circle class="arc" cx="14" cy="14" r="11"/><path class="tick" d="M8.5 14.5l3.6 3.6 7.4-8"/></svg></span></div>
+        <div class="hub-body">
+          <div><h3>Coordinator <span class="role">client agent</span></h3><p>Discovers Agent Cards, delegates tasks with JSON-RPC <code>tasks/send</code>, and chains each artifact into the next request.</p></div>
+          <div class="chips" id="chips-coordinator"><span class="chip">JSON-RPC 2.0</span><span class="chip">tasks/send</span><span class="chip mono">:18100</span></div>
+        </div>
+        <span class="status" data-label="Standing by">Standing by</span>
+      </article>
+      <div class="agents-row">
+        <article class="node spot" id="node-research" data-state="idle">
+          <div class="node-top"><span class="idx">01</span><span class="mark" aria-hidden="true"><svg viewBox="0 0 28 28"><circle class="ring" cx="14" cy="14" r="11"/><circle class="arc" cx="14" cy="14" r="11"/><path class="tick" d="M8.5 14.5l3.6 3.6 7.4-8"/></svg></span></div>
+          <h3>Research Agent</h3><p>Creates a structured research brief.</p>
+          <div class="chips" id="chips-research"></div>
+          <span class="status" data-label="Waiting">Waiting</span>
+        </article>
+        <article class="node spot" id="node-analysis" data-state="idle">
+          <div class="node-top"><span class="idx">02</span><span class="mark" aria-hidden="true"><svg viewBox="0 0 28 28"><circle class="ring" cx="14" cy="14" r="11"/><circle class="arc" cx="14" cy="14" r="11"/><path class="tick" d="M8.5 14.5l3.6 3.6 7.4-8"/></svg></span></div>
+          <h3>Analysis Agent</h3><p>Identifies themes and recommendations.</p>
+          <div class="chips" id="chips-analysis"></div>
+          <span class="status" data-label="Waiting">Waiting</span>
+        </article>
+        <article class="node spot" id="node-writer" data-state="idle">
+          <div class="node-top"><span class="idx">03</span><span class="mark" aria-hidden="true"><svg viewBox="0 0 28 28"><circle class="ring" cx="14" cy="14" r="11"/><circle class="arc" cx="14" cy="14" r="11"/><path class="tick" d="M8.5 14.5l3.6 3.6 7.4-8"/></svg></span></div>
+          <h3>Report Agent</h3><p>Produces the final report artifact.</p>
+          <div class="chips" id="chips-writer"></div>
+          <span class="status" data-label="Waiting">Waiting</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="output" class="panel spot hidden" aria-labelledby="out-title">
+    <div class="topline">
+      <strong id="out-title">Final artifact</strong>
+      <span class="out-actions">
+        <button id="download" type="button" class="ghost">Download .txt</button>
+        <button id="copy" type="button" class="ghost">Copy report</button>
+      </span>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Artifacts">
+      <button role="tab" id="tab-report" aria-selected="true" aria-controls="report" data-tab="report">Final report</button>
+      <button role="tab" id="tab-research" aria-selected="false" aria-controls="report" tabindex="-1" data-tab="research">Research</button>
+      <button role="tab" id="tab-analysis" aria-selected="false" aria-controls="report" tabindex="-1" data-tab="analysis">Analysis</button>
+      <button role="tab" id="tab-tasks" aria-selected="false" aria-controls="report" tabindex="-1" data-tab="tasks">Raw tasks</button>
+    </div>
+    <div id="report" class="result" role="tabpanel" tabindex="0" aria-labelledby="tab-report"></div>
+    <p class="hint">This is a deterministic teaching example, not an AI-generated factual report. Verify claims before relying on them.</p>
+  </section>
+
+  <section class="panel trace-panel" aria-labelledby="trace-title">
+    <div class="topline"><strong id="trace-title">Protocol trace</strong><span class="muted">What the coordinator did, step by step</span></div>
+    <ol id="trace" class="trace"><li class="empty">Run a task to see discovery, delegation, and artifact hand-offs appear here.</li></ol>
+  </section>
+
+  <p class="hint note">Learning note: the demo implements a deliberately small JSON-RPC task exchange and Agent Card discovery flow. It illustrates the presentation's client/remote agent roles, tasks, messages, and artifacts; it is not a complete A2A 1.0 implementation.</p>
+</main>
+
+<script src="/static/grid.js"></script>
+<script src="/static/fx.js"></script>
+<script src="/static/app.js"></script>
+</body>
+</html>
