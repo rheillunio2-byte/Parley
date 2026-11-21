@@ -1,0 +1,2 @@
+# The local learning demo uses only Python's standard library.
+# No pip installation is required.
