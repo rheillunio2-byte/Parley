@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 200" width="1200" height="200" role="img" aria-label="Parley: agents that talk, tasks that travel.">
+<defs>
+<linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#5fd4ff"/><stop offset=".55" stop-color="#9a86ff"/><stop offset="1" stop-color="#4fe3b0"/></linearGradient>
+<radialGradient id="bg" cx=".5" cy="1" r=".9"><stop offset="0" stop-color="#9a86ff" stop-opacity=".22"/><stop offset="1" stop-color="#9a86ff" stop-opacity="0"/></radialGradient>
+<pattern id="dots" width="48" height="48" patternUnits="userSpaceOnUse"><rect x="23" y="23" width="2" height="2" fill="#96b2ff" opacity=".2"/></pattern>
+<filter id="blur" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="2.4"/></filter>
+<clipPath id="c"><rect width="1200" height="200" rx="24"/></clipPath>
+</defs>
+<g clip-path="url(#c)"><rect width="1200" height="200" fill="#070a14"/><rect width="1200" height="200" fill="url(#bg)"/><rect width="1200" height="200" fill="url(#dots)"/></g>
+<rect x=".75" y=".75" width="1198.5" height="198.5" rx="23.5" fill="none" stroke="#8fa8ff" stroke-opacity=".22"/>
+<text x="600" y="92" text-anchor="middle" font-family="Inter,ui-sans-serif,system-ui,'Segoe UI',Roboto,sans-serif" font-size="40" font-weight="800" letter-spacing="-1" fill="url(#g)">Agents that talk. Tasks that travel.</text>
+<text x="600" y="128" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="14" fill="#8f9bb8" letter-spacing=".6">PARLEY  ·  a local Agent2Agent learning lab</text>
+<path d="M240 168H960" stroke="#8fa8ff" stroke-opacity=".3" stroke-dasharray="3 6" stroke-width="1.4"/>
+<g fill="#0b1226" stroke-width="1.5"><circle cx="240" cy="168" r="6" stroke="#5fd4ff"/><circle cx="420" cy="168" r="6" stroke="#9a86ff"/><circle cx="600" cy="168" r="6" stroke="#4fe3b0"/><circle cx="780" cy="168" r="6" stroke="#9a86ff"/><circle cx="960" cy="168" r="6" stroke="#5fd4ff"/></g>
+<circle cy="168" r="6" fill="#fff" filter="url(#blur)"><animate attributeName="cx" values="240;960;240" dur="6s" repeatCount="indefinite"/></circle>
+<circle cy="168" r="3" fill="#fff"><animate attributeName="cx" values="240;960;240" dur="6s" repeatCount="indefinite"/></circle>
+</svg>

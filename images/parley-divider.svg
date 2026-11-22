@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 28" width="1200" height="28" role="presentation" aria-hidden="true">
+  <defs>
+    <linearGradient id="line" x1="0" x2="1">
+      <stop offset="0" stop-color="#5fd4ff" stop-opacity="0"/>
+      <stop offset=".25" stop-color="#5fd4ff" stop-opacity=".55"/>
+      <stop offset=".75" stop-color="#9a86ff" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#9a86ff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="glow"><stop offset="0" stop-color="#fff"/><stop offset=".3" stop-color="#5fd4ff" stop-opacity=".7"/><stop offset="1" stop-color="#5fd4ff" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect x="0" y="13" width="1200" height="2" fill="url(#line)"/>
+  <g stroke="#5fd4ff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".9">
+    <path d="M582 6h-5v5M618 6h5v5M582 22h-5v-5M618 22h5v-5"/>
+  </g>
+  <circle cx="600" cy="14" r="3.2" fill="#9a86ff">
+    <animate attributeName="r" values="3.2;4.6;3.2" dur="2.4s" repeatCount="indefinite"/>
+  </circle>
+  <circle r="12" cy="14" fill="url(#glow)">
+    <animate attributeName="cx" values="-20;1220" dur="7s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.1;.9;1" dur="7s" repeatCount="indefinite"/>
+  </circle>
+</svg>
