@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" width="1000" height="560" role="img" aria-label="Sequence diagram: browser starts a run, the coordinator discovers three Agent Cards, then sends tasks to the research, analysis and report agents in turn and returns the final report.">
+<defs>
+<linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5fd4ff"/><stop offset="1" stop-color="#9a86ff"/></linearGradient>
+<filter id="blur" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="2.4"/></filter>
+<pattern id="dots" width="40" height="40" patternUnits="userSpaceOnUse"><rect x="19" y="19" width="2" height="2" fill="#96b2ff" opacity=".18"/></pattern>
+<marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1l8 4-8 4z" fill="#8fa8ff" fill-opacity=".7"/></marker>
+</defs>
+<rect width="1000" height="560" rx="22" fill="#070a14"/><rect width="1000" height="560" rx="22" fill="url(#dots)"/>
+<rect x=".75" y=".75" width="998.5" height="558.5" rx="21.5" fill="none" stroke="#8fa8ff" stroke-opacity=".2"/>
+
+<rect x="38" y="22" width="124" height="34" rx="10" fill="#0b1226" stroke="#eaf0ff" stroke-opacity=".7"/>
+<text x="100" y="44" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" font-weight="700" letter-spacing="1.4" fill="#eaf0ff">BROWSER</text>
+<path d="M100 56V520" stroke="#8fa8ff" stroke-opacity=".25" stroke-dasharray="2 6"/>
+<rect x="238" y="22" width="124" height="34" rx="10" fill="#0b1226" stroke="#8fe3ff" stroke-opacity=".7"/>
+<text x="300" y="44" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" font-weight="700" letter-spacing="1.4" fill="#8fe3ff">COORDINATOR</text>
+<path d="M300 56V520" stroke="#8fa8ff" stroke-opacity=".25" stroke-dasharray="2 6"/>
+<rect x="438" y="22" width="124" height="34" rx="10" fill="#0b1226" stroke="#5fd4ff" stroke-opacity=".7"/>
+<text x="500" y="44" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" font-weight="700" letter-spacing="1.4" fill="#5fd4ff">RESEARCH</text>
+<path d="M500 56V520" stroke="#8fa8ff" stroke-opacity=".25" stroke-dasharray="2 6"/>
+<rect x="638" y="22" width="124" height="34" rx="10" fill="#0b1226" stroke="#9a86ff" stroke-opacity=".7"/>
+<text x="700" y="44" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" font-weight="700" letter-spacing="1.4" fill="#9a86ff">ANALYSIS</text>
+<path d="M700 56V520" stroke="#8fa8ff" stroke-opacity=".25" stroke-dasharray="2 6"/>
+<rect x="838" y="22" width="124" height="34" rx="10" fill="#0b1226" stroke="#4fe3b0" stroke-opacity=".7"/>
+<text x="900" y="44" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" font-weight="700" letter-spacing="1.4" fill="#4fe3b0">REPORT</text>
+<path d="M900 56V520" stroke="#8fa8ff" stroke-opacity=".25" stroke-dasharray="2 6"/>
+<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.0000;0.0250;0.93;0.97;1" dur="14s" repeatCount="indefinite"/><path d="M100 100H300" stroke="#eaf0ff" stroke-width="2" marker-end="url(#arr)" fill="none" stroke-opacity=".9"/><circle cx="100" cy="100" r="3.5" fill="#eaf0ff"/><text x="200.0" y="91" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#eaf0ff">POST /api/run-stream</text></g>
+<text x="22" y="104" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="11" fill="#55627f">01</text>
+<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.0857;0.1107;0.93;0.97;1" dur="14s" repeatCount="indefinite"/><path d="M300 146H900" stroke="#8fe3ff" stroke-width="2" marker-end="url(#arr)" fill="none" stroke-opacity=".9"/><circle cx="300" cy="146" r="3.5" fill="#8fe3ff"/><text x="600.0" y="137" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#8fe3ff">GET /.well-known/agent-card.json  (once per agent)</text></g>
+<text x="22" y="150" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="11" fill="#55627f">02</text>
+<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.1714;0.1964;0.93;0.97;1" dur="14s" repeatCount="indefinite"/><path d="M300 192H500" stroke="#5fd4ff" stroke-width="2" marker-end="url(#arr)" fill="none" stroke-opacity=".9"/><circle cx="300" cy="192" r="3.5" fill="#5fd4ff"/><text x="400.0" y="183" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#5fd4ff">tasks/send  ·  your topic</text></g>
+<text x="22" y="196" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="11" fill="#55627f">03</text>
+<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.2571;0.2821;0.93;0.97;1" dur="14s" repeatCount="indefinite"/><path d="M500 238H300" stroke="#4fe3b0" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arr)" fill="none" stroke-opacity=".9"/><circle cx="500" cy="238" r="3.5" fill="#4fe3b0"/><text x="400.0" y="229" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#4fe3b0">artifact · research brief</text></g>
+<text x="22" y="242" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="11" fill="#55627f">04</text>
+<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.3429;0.3679;0.93;0.97;1" dur="14s" repeatCount="indefinite"/><path d="M300 284H700" stroke="#9a86ff" stroke-width="2" marker-end="url(#arr)" fill="none" stroke-opacity=".9"/><circle cx="300" cy="284" r="3.5" fill="#9a86ff"/><text x="500.0" y="275" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#9a86ff">tasks/send  ·  the brief</text></g>
+<text x="22" y="288" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="11" fill="#55627f">05</text>
+<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.4286;0.4536;0.93;0.97;1" dur="14s" repeatCount="indefinite"/><path d="M700 330H300" stroke="#4fe3b0" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arr)" fill="none" stroke-opacity=".9"/><circle cx="700" cy="330" r="3.5" fill="#4fe3b0"/><text x="500.0" y="321" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#4fe3b0">artifact · analysis</text></g>
+<text x="22" y="334" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="11" fill="#55627f">06</text>
+<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.5143;0.5393;0.93;0.97;1" dur="14s" repeatCount="indefinite"/><path d="M300 376H900" stroke="#4fe3b0" stroke-width="2" marker-end="url(#arr)" fill="none" stroke-opacity=".9"/><circle cx="300" cy="376" r="3.5" fill="#4fe3b0"/><text x="600.0" y="367" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#4fe3b0">tasks/send  ·  the analysis</text></g>
+<text x="22" y="380" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="11" fill="#55627f">07</text>
+<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.6000;0.6250;0.93;0.97;1" dur="14s" repeatCount="indefinite"/><path d="M900 422H300" stroke="#4fe3b0" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arr)" fill="none" stroke-opacity=".9"/><circle cx="900" cy="422" r="3.5" fill="#4fe3b0"/><text x="600.0" y="413" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#4fe3b0">artifact · final report</text></g>
+<text x="22" y="426" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="11" fill="#55627f">08</text>
+<g opacity="0"><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.6857;0.7107;0.93;0.97;1" dur="14s" repeatCount="indefinite"/><path d="M300 468H100" stroke="#eaf0ff" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arr)" fill="none" stroke-opacity=".9"/><circle cx="300" cy="468" r="3.5" fill="#eaf0ff"/><text x="200.0" y="459" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="12" fill="#eaf0ff">NDJSON events … then the result</text></g>
+<text x="22" y="472" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="11" fill="#55627f">09</text>
+<text x="500" y="540" text-anchor="middle" font-family="Inter,ui-sans-serif,system-ui,'Segoe UI',Roboto,sans-serif" font-size="13.5" fill="#8f9bb8">The Coordinator sits in the middle of every hop: agents never talk to each other directly in this demo.</text>
+</svg>
